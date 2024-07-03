@@ -1,10 +1,3 @@
-# k8s-vm-calico-localreg-ecr-setup
-Install k8s on VM (Calico CNI) with Local Registry run on different VM and Pull images from AWS ECR
-
-##  Need to Ready 3 VM running ( one Master node, one Worker node and one for running Registry), Will need AWS Account for testing connect with ECR
-
-- Vagrantfile sample need to create ssh-key first before “vagrant up”
-```bash
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 NUM_WORKER_NODES    = 3
@@ -67,39 +60,3 @@ Vagrant.configure("2") do |config|
     end
   end
 end
-```
-
-## Command need to run on master node
-
-```
-$ sh command.sh
-$ sh master.sh
-
-###Install CNI Calico###
-$ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml
-
-###Modify the pod CIDR firt###
-$ kubectl apply -f custom-resources.yaml
-```
-
-## 
-Command need to run on client nodes
-
-```
-$ sh command.sh
-$ sh node.sh (No Need)
-
-###Join the K8s cluster###(Generated from master node)
-$ kubeadm join 192.168.56.10:6443 --token z05q57.1pnh06cqvyp0ndd9 \
-        --discovery-token-ca-cert-hash sha256:fd2480726d04b19aaaf72eac24c5c4ced08909943aa2cc49e727ac153c1fcc3f 
-```
-
-## After Successfully Joining Worker node run on master node
-
-```
-$ kubectl get nodes
-$ kubectl label node worker-node01 node-role.kubernetes.io/worker=worker-new
-```
-
-## All k8s running resource output after calico installed
-

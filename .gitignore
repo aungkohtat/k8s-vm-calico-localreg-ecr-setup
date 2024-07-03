@@ -1,0 +1,43 @@
+# Vagrant
+.vagrant/
+*.box
+
+# SSH
+*.pem
+*.ppk
+id_rsa
+id_rsa.pub
+id_dsa
+id_dsa.pub
+id_ecdsa
+id_ecdsa.pub
+id_ed25519
+id_ed25519.pub
+known_hosts
+
+# Vagrant logs
+vagrant-*.log
+
+# Vagrant machine-specific files
+Vagrantfile.local
+
+# SSH config
+.ssh/config
+
+# Vagrant provisioning scripts (optional, uncomment if needed)
+# *.sh
+# *.bat
+
+# Vagrant cache
+.vagrant.d/
+
+# Vagrant plugins
+.vagrant-plugins/
+
+# Vagrant generated files
+*.vdi
+*.vmdk
+*.vhd
+
+# SSH agent files
+.ssh-agent
